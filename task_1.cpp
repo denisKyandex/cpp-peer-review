@@ -96,6 +96,7 @@ void Request_handler(std::istream& input,
  
 int main() {
     StimulatePeople stimulation;
+    
     Request_handler(std::cin, 
                     std::cout, 
                     stimulation);
