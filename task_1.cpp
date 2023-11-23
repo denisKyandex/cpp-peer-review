@@ -60,34 +60,33 @@ double StimulatePeople::Cheer(int user_id) {
     }
 }
  
-void Request_handler(std::istream& input, 
-                     std::ostream& output, 
+void Request_handler(std::ostream& output, 
                      StimulatePeople& stimulation) {
     
     std::string str;
-    getline(input, str);
+    std::cin >> str;
     
     int requests_amount = std::stoi(str);
  
     for (int i = 0; i < requests_amount; ++i) {
         
         std::string request_type;
-        getline(input, request_type, ' ');
+        std::cin >> request_type;
         
         if (request_type == "READ") {
             
             std::string user_id;
-            getline(input, user_id, ' ');
+            std::cin >> user_id;
             
             std::string pages;
-            getline(input, pages);
+            std::cin >> pages;
             
             stimulation.Read(std::stoi(user_id), 
                              std::stoi(pages));
         } else {
             
             std::string user_id;
-            getline(input, user_id);
+            std::cin >> user_id;
             
             output << stimulation.Cheer(std::stoi(user_id)) << std::endl;
         }
@@ -96,7 +95,6 @@ void Request_handler(std::istream& input,
  
 int main() {
     StimulatePeople stimulation;
-    Request_handler(std::cin, 
-                    std::cout, 
+    Request_handler(std::cout, 
                     stimulation);
 }
