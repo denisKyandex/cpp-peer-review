@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <iostream>
 #include <sstream>
+#include <cassert>
  
 class Domain {
 public:
@@ -113,6 +114,16 @@ Number ReadNumberOnLine(std::istream &input) {
     std::istringstream(line) >> num;
  
     return num;
+}
+
+void TestDomainCheker() {
+    const std::vector<Domain> forbidden_domains = ReadDomains(std::cin, 
+                                                              ReadNumberOnLine<size_t>(std::cin));
+    DomainChecker domain_checker( forbidden_domains.begin(), forbidden_domains.end() );
+    assert(domain_checker.IsForbidden(Domain("cpp.leetcode.com")));
+    assert(domain_checker.IsForbidden(Domain("py.leetcode.com")));
+    assert(domain_checker.IsForbidden(Domain("js.leetcode.com")));
+    assert(!domain_checker.IsForbidden(Domain("codewars.com")));
 }
  
 int main() {
